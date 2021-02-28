@@ -1,5 +1,5 @@
 # JavaProjects
  This repository contains all the project I created while learning Java
 
-###Numerical System Converter
+### Numerical System Converter
 This Project Converts any code with given base to required number representation system range( 1(hypothecial) - 36 )
