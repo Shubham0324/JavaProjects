@@ -1,14 +1,11 @@
 package search;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class SimpleSearch {
     String[] people;
-   // File file;
     public final Scanner sc = new Scanner(System.in);
-/*
+
     public void numberOfCases(){
         System.out.println("Enter the number of people:");
         int a = sc.nextInt();
@@ -18,31 +15,17 @@ public class SimpleSearch {
         getInputs();
        }
     private void getInputs() {
-       // for (int j = 0; j < people.length; j++) {
-         //   people[j] = sc.nextLine();
-        //}
-    }
-*/
-    public static void main(String[] args) throws FileNotFoundException {
-        SimpleSearch search = new SimpleSearch();
-       // search.numberOfCases();
-
-      //  search.file = new File(args[1]);
-        {
-            Scanner scanner = new Scanner(new File(args[1]));
-            // System.out.println("The text is:");
-            int ik = 0;
-            while (scanner.hasNext()) {
-                System.out.println("in");
-                search.people[ik] = scanner.nextLine();
-                System.out.println(search.people[ik]);
-                search.sc.nextLine();
-                ik++;
-            }
-            scanner.close();
+        for (int j = 0; j < people.length; j++) {
+            people[j] = sc.nextLine();
         }
+    }
+
+    public static void main(String[] args) {
+        SimpleSearch search = new SimpleSearch();
+        search.numberOfCases();
         System.out.println();
         search.menuPlease();
+
 
     }
 
