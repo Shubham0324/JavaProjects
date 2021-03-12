@@ -2,45 +2,23 @@ package search;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SimpleSearch {
-    String[] people;
-   // File file;
+    ArrayList<String> people = new ArrayList<>();
     public final Scanner sc = new Scanner(System.in);
-/*
-    public void numberOfCases(){
-        System.out.println("Enter the number of people:");
-        int a = sc.nextInt();
-        people = new String[a];
-        System.out.println("Enter all people:");
-        sc.nextLine();
-        getInputs();
-       }
-    private void getInputs() {
-       // for (int j = 0; j < people.length; j++) {
-         //   people[j] = sc.nextLine();
-        //}
-    }
-*/
+
     public static void main(String[] args) throws FileNotFoundException {
         SimpleSearch search = new SimpleSearch();
-       // search.numberOfCases();
-
-      //  search.file = new File(args[1]);
-        {
-            Scanner scanner = new Scanner(new File(args[1]));
-            // System.out.println("The text is:");
+            Scanner scanner = new Scanner(new File("D:\\Simple Search Engine\\Simple Search Engine\\task\\src\\search\\names.txt"));
             int ik = 0;
             while (scanner.hasNext()) {
-                System.out.println("in");
-                search.people[ik] = scanner.nextLine();
-                System.out.println(search.people[ik]);
-                search.sc.nextLine();
+                search.people.add(scanner.nextLine());
                 ik++;
             }
             scanner.close();
-        }
+          //  search.sc.nextLine();
         System.out.println();
         search.menuPlease();
 
@@ -48,7 +26,8 @@ public class SimpleSearch {
 
     private  void menuPlease() {
         System.out.println();
-       // sc.nextLine();
+     //  sc.nextLine();
+        System.out.println(people.size());
         System.out.println("=== Menu ===\n" +
                 "1. Find a person\n" +
                 "2. Print all people\n" +
@@ -78,13 +57,14 @@ public class SimpleSearch {
         for (String person : people) {
                 System.out.println(person.replaceAll("[\\[\\],]", ""));
              }
+
         }
 
 
     private  void searchPeople() {
 
         System.out.println();
-        System.out.println("Enter data to search people:");
+        //System.out.println("Enter data to search people:");
         boolean flag = false;
         int count = 0;
         String queryValue = sc.next();
