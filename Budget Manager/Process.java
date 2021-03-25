@@ -1,7 +1,9 @@
 package budget;
 
-public class Process extends Person {
-   Person person = new Person();
+import java.io.*;
+
+public class Process extends Person  implements Serializable {
+    Person person = new Person();
 
     Application foodList = new Application();
     Application clothList = new Application();
@@ -14,13 +16,15 @@ public class Process extends Person {
     }
 
 
-    private void mainMenu(){
+    private void mainMenu() {
         System.out.println();
         System.out.println("Choose your action:\n" +
                 "1) Add income\n" +
                 "2) Add purchase\n" +
                 "3) Show list of purchases\n" +
                 "4) Balance\n" +
+                "5) Save\n" +
+                "6) Load\n" +
                 "0) Exit");
         userChoiceForMainMenu(sc.nextInt());
     }
@@ -35,6 +39,10 @@ public class Process extends Person {
                 break;
             case 4: person.showBalance();  // Method Done
                 break;
+            case 5: saveState();
+                    break;
+            case 6: readState();
+                    break;
             case 0:
                 System.out.println("Bye!");
                 System.exit(0);
@@ -45,6 +53,7 @@ public class Process extends Person {
         System.out.println();
         mainMenu();
     }
+
 
     /* Purchase Menu */
     private void purchaseType(){
@@ -61,7 +70,7 @@ public class Process extends Person {
     }
 
     /* User Choice Menu Switch Case*/
-    private void purchaseTypeChoice(int choice) {
+    private void purchaseTypeChoice(int choice){
 
         switch (choice){
             case 1: addPurchase(foodList, person);
@@ -84,7 +93,7 @@ public class Process extends Person {
 
 
 
-    private void showListOfPurchase() {
+    private void showListOfPurchase(){
         if (foodList.getListItem().size() > 0 || clothList.getListItem().size() > 0
          || entList.getListItem().size() > 0 || otherList.getListItem().size() > 0){
             System.out.println("Choose the type of purchases\n" +
@@ -141,9 +150,40 @@ public class Process extends Person {
                 System.out.println("Check Your Input");
                 showListOfPurchaseChoice(sc.nextInt());
         }
-        System.out.println();;
+        System.out.println();
         showListOfPurchase();
     }
 
+    protected void saveState(){
+        try{
+            FileOutputStream fs = new FileOutputStream("purchases.txt");
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+            os.writeObject(person);
+            os.writeObject(foodList);
+            os.writeObject(clothList);
+            os.writeObject(entList);
+            os.writeObject(otherList);
+            os.close();
+            System.out.println("\nPurchases were saved!");
 
+        }catch (IOException e){
+            System.out.println("Error");
+        }
+    }
+
+    protected void readState()  {
+        try{
+            FileInputStream fileStream = new FileInputStream("purchases.txt");
+            ObjectInputStream os = new ObjectInputStream(fileStream);
+            person = (Person) os.readObject();
+            foodList = (Application) os.readObject();
+            clothList = (Application) os.readObject();
+            entList = (Application) os.readObject();
+            otherList = (Application) os.readObject();
+            os.close();
+            System.out.println("\nPurchases were loaded!");
+        }catch (IOException | ClassNotFoundException e){
+            System.out.println("Error");
+        }
+    }
 }

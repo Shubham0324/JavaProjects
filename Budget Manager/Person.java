@@ -1,9 +1,10 @@
 package budget;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Person extends Application{
-    Scanner sc = new Scanner(System.in);
+public class Person extends Application implements Serializable {
+    transient Scanner sc = new Scanner(System.in);
     private float income = 0, balance= 0;
 
     public void setIncome(float income) {
@@ -21,7 +22,7 @@ public class Person extends Application{
     }
 
 
-    public void runApplication(){
+    public void runApplication()  {
         Process process = new Process();
         process.executeManager();
 

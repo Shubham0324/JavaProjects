@@ -1,9 +1,10 @@
 package budget;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Application  {
+public class Application  implements Serializable {
     private float total = 0,count = 0;
     private final ArrayList<String> listItem = new ArrayList<>();
 
@@ -51,6 +52,8 @@ public class Application  {
         }
         count++;
     }
+
+
 
 
     protected void showListType(Application listType) {
